@@ -30,13 +30,7 @@ class ChamadosTable extends Table
      */
     public function initialize(array $config)
     {
-        parent::initialize($config);
-
-        $this->setTable('chamados');
-        $this->setDisplayField('name');
-        $this->setPrimaryKey('id');
-
-        $this->addBehavior('Timestamp');
+      $this->addBehavior('Timestamp');
     }
 
     /**
@@ -47,19 +41,10 @@ class ChamadosTable extends Table
      */
     public function validationDefault(Validator $validator)
     {
-        $validator
-            ->integer('id')
-            ->allowEmpty('id', 'create');
+      $validator
+          ->notEmpty('title')
+          ->notEmpty('body');
 
-        $validator
-            ->allowEmpty('name');
-
-        $validator
-            ->allowEmpty('title');
-
-        $validator
-            ->allowEmpty('body');
-
-        return $validator;
+      return $validator;
     }
 }
